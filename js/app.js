@@ -1,32 +1,42 @@
-let NomesAmigos = [];
-let AmigosSorteados = [];
+let Amigos = [];
+let Sorteados = [];
 
 function adicionar(){
-    let nomeAmigo = (document.getElementById("nome-amigo")).value;
-    let listAmigos = document.getElementById("lista-amigos");
-    
-    if (listAmigos.textContent == "") {
-        listAmigos.textContent = nomeAmigo;
+    let amigo = (document.getElementById("nome-amigo")).value;
+
+    if (amigo == "") {
+        alert("Erro! Nome nulo!");
+        
     }else {
-        listAmigos.textContent += `, ${nomeAmigo}`;
+        if (Amigos.includes(amigo)) {
+        alert("Erro! Nome já cadastrado!");
+        }else{
+            let listAmigos = document.getElementById("lista-amigos");
+        
+            if (listAmigos.textContent == "") {
+                listAmigos.textContent = amigo;
+            }else {
+                listAmigos.textContent += `, ${amigo}`;
+            }
+
+            Amigos.push(amigo);
+
+            (document.getElementById("nome-amigo")).value = "";
+        }
     }
-
-    NomesAmigos.push(nomeAmigo);
-
-    (document.getElementById("nome-amigo")).value = "";
 }
 
 function sortear(){
     let listSorteio = document.getElementById("lista-sorteio");
-    let nomeSorteado;
-    for (let i = 0; i < NomesAmigos.length; i++) {
+    let sorteado;
+    for (let i = 0; i < Amigos.length; i++) {
         do {
-            nomeSorteado = NomesAmigos[parseInt(Math.floor(Math.random() * NomesAmigos.length))];
-        } while (NomesAmigos[i] == nomeSorteado || AmigosSorteados.includes(nomeSorteado));
+            sorteado = Amigos[parseInt(Math.floor(Math.random() * Amigos.length))];
+        } while (Amigos[i] == sorteado || Sorteados.includes(sorteado));
         
-        AmigosSorteados.push(nomeSorteado);
+        Sorteados.push(sorteado);
 
-        listSorteio.innerHTML += `${NomesAmigos[i]} --> ${nomeSorteado}<br>`;
+        listSorteio.innerHTML += `${Amigos[i]} --> ${sorteado}<br>`;
     }
 
     
@@ -36,6 +46,6 @@ function reiniciar(){
     document.getElementById("nome-amigo").value = "";
     document.getElementById("lista-sorteio").innerHTML = "";
     document.getElementById("lista-amigos").innerHTML = "";
-    NomesAmigos = [];
-    AmigosSorteados = [];
+    Amigos = [];
+    Sorteados = [];
 }
