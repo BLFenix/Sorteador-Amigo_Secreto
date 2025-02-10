@@ -6,15 +6,17 @@ function adicionar(){
 
     if (amigo == "") {
         alert("Erro! Nome nulo!");
-    }else {
-        if (Amigos.includes(amigo)) {
-        alert("Erro! Nome já cadastrado!");
-        }else{
-            Amigos.push(amigo);
-            alert(Amigos.length);
-            modificarLista();
-        }
+        return;
     }
+    
+    if (Amigos.includes(amigo)) {
+        alert("Erro! Nome já cadastrado!");
+        return;
+    }
+
+    Amigos.push(amigo);
+    alert(Amigos.length);
+    modificarLista();
 }
 
 function modificarLista(){
