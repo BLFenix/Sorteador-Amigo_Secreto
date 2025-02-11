@@ -15,7 +15,6 @@ function adicionar(){
     }
 
     Amigos.push(amigo);
-    alert(Amigos.length);
     modificarLista();
 }
 
